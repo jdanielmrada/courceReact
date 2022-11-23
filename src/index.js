@@ -12,23 +12,28 @@ import reportWebVitals from './reportWebVitals';
 
 // <p>hola mundo</p> -> no recomendada
 // const x = React.createElement('p', null, 'hola mundo')
-//
-const X = () => <p>hola mundo</p>
+//por buena practicas los component inician con mayuscula
+const Li = ({ children, estado, casa, edad }) => {
+    console.log(casa, edad)
+    return (<li>{children} esta {estado}</li>)
+}
+const X = () =>
+    <ul>
+        <Li
+            estado={'feliz'}
+            casa={false}
+            edad={20}
+        >Chanchito</Li>
+        <Li estado={'triste'}>Chanchito</Li>
+        <Li estado={'enojado'}>Chanchito</Li>
+    </ul>
 // Consegui hacer lo mismo fue utilizando las etiquetas de Ract
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     // Recibe un jsx lo cual es lo mas optimo (React.createElemnt())
     <X />
 
-    // <p>hola mundo</p> no no se puede renderizar codigo html puro
-    // x -> fijate la variable pude ser sustituida por el htm mas no es lo indicado
-    // #########################################################################
-    // <React.StrictMode>
-    //     {/* <App /> */}
 
-    // </React.StrictMode>->OJO CON ESTO FIJATE ESTO YA ES PARTE DE UN COMPONENT FOR LO WHAT TE VA DAR PROBLEMA SI QUIERES METER OTRO COMPONENT. ES DECIR ESTO NO ES NECESARIO.
-    // ###########################################################################
-    // COMPONENT FUNCIONAL
 );
 
 
