@@ -1,53 +1,38 @@
 import { Component } from "react"
 
-class Button extends Component {
-    state = {}
-    constructor(props) {
-        super(props)
-        console.log('constructor', props);
-    }
-    componentDidMount() {
-        console.log('componentDidMount')
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        console.log('componentDidUpdate', prevProps, prevState)
-    }
-
-    componentWillUnmount() {
-        console.log('Desmontando Componente', this.props, this.state)
-    }
+class Imput extends Component {
     render() {
-        console.log('Renderizando button')
         return (
-            <button onClick={() => this.setState({ prop: 1 })} >
-                Enviar
-            </button>
+            <input
+                value={this.props.value}
+                onChange={this.props.onChange}
+            />
         )
     }
 }
 class App extends Component {
     state = {
-        valor: 3
+        nombre: '',
+        apellido: '',
+    }
+
+    updateValues = (prop, value) => {
+        this.setState({ [prop]: value })
     }
     render() {
-        console.log(this.state)
         return (
+            <p>
+                Nombre Completo {`${this.state.nombre} ${this.state.apellido}`}
+                <Imput
+                    value={this.state.nombre}
+                    onChange={e => this.updateValues('nombre', e.target.value)}
+                />
 
-            <div>
-                <p>
-                    Hola mundo
-                </p>
-                {this.state.valor === 3
-                    ? <Button chanchito='Feliz' />
-                    : null
-                }
-                <button
-                    className={`${this.state.valor}`}
-                    onClick={() => this.setState({ valor: 2 })}>
-                    enviar en App
-                </button>
-            </div>
+                <Imput
+                    value={this.state.apellido}
+                    onChange={e => this.updateValues('apellido', e.target.value)}
+                />
+            </p>
         )
     }
 }
